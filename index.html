@@ -1,0 +1,518 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Career Intelligence</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/app.js" defer></script>
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="brand">
+        <span class="brand-icon">AI</span>
+
+        <div>
+            <h2>Career Intelligence</h2>
+            <small>Your Smart Career Companion</small>
+        </div>
+    </div>
+
+    <button id="logoutBtn" class="logout-btn" hidden>
+        Logout
+    </button>
+
+</header>
+
+
+<!-- LOGIN AND REGISTER -->
+
+<section id="authPanel" class="auth-container">
+
+    <div class="auth-intro">
+
+        <span class="eyebrow">YOUR AI CAREER PARTNER</span>
+
+        <h1>Build Your Career With Intelligence.</h1>
+
+        <p>
+            Analyze your resume, discover career opportunities,
+            improve your skills and prepare for your dream job
+            using AI-powered career intelligence.
+        </p>
+
+    </div>
+
+
+    <div class="auth-card">
+
+        <div class="auth-tabs">
+
+            <button class="auth-tab active" data-auth="login">
+                Login
+            </button>
+
+            <button class="auth-tab" data-auth="register">
+                Register
+            </button>
+
+        </div>
+
+
+        <!-- LOGIN FORM -->
+
+        <form id="loginForm" class="auth-form">
+
+            <h2>Welcome Back! 👋</h2>
+
+            <label>Email Address</label>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Enter your email"
+                required
+            >
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter your password"
+                required
+            >
+
+            <button type="submit" class="primary-btn">
+                Login to Dashboard
+            </button>
+
+        </form>
+
+
+        <!-- REGISTER FORM -->
+
+        <form id="registerForm" class="auth-form hidden">
+
+            <h2>Create Your Account ✨</h2>
+
+            <label>Full Name</label>
+
+            <input
+                type="text"
+                id="registerName"
+                placeholder="Enter your full name"
+                required
+            >
+
+            <label>Email Address</label>
+
+            <input
+                type="email"
+                id="registerEmail"
+                placeholder="Enter your email"
+                required
+            >
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="registerPassword"
+                placeholder="Minimum 8 characters"
+                minlength="8"
+                required
+            >
+
+            <button type="submit" class="primary-btn">
+                Create Account
+            </button>
+
+        </form>
+
+        <p id="authMessage" class="message"></p>
+
+    </div>
+
+</section>
+
+
+
+<!-- MAIN DASHBOARD -->
+
+<div id="dashboard" class="dashboard hidden">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h3>MY WORKSPACE</h3>
+
+        <a href="#overview">🏠 Overview</a>
+
+        <a href="#resume">📄 Resume Upload</a>
+
+        <a href="#job-analysis">🎯 Job Analysis</a>
+
+        <a href="#career">💼 Career Recommendations</a>
+
+        <a href="#simulator">🔮 What-If Simulator</a>
+
+        <a href="#interview">🎤 Interview Preparation</a>
+
+        <a href="#roadmap">📚 Learning Roadmap</a>
+
+        <a href="#report">📥 PDF Report</a>
+
+    </aside>
+
+
+
+    <!-- DASHBOARD CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- OVERVIEW -->
+
+        <section id="overview" class="welcome-card">
+
+            <span class="eyebrow">
+                YOUR PERSONAL CAREER WORKSPACE
+            </span>
+
+            <h1>Welcome to AI Career Intelligence 🚀</h1>
+
+            <p>
+                Your personalized AI-powered career analysis platform.
+            </p>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span>Resume ID</span>
+                    <strong id="resumeIdDisplay">Not Uploaded</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>Resume Status</span>
+                    <strong id="resumeStatus">Pending</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>Account Status</span>
+                    <strong>Active</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RESUME UPLOAD -->
+
+        <section id="resume" class="panel">
+
+            <h2>📄 01. Upload Your Resume</h2>
+
+            <p>
+                Upload your resume in PDF or DOCX format.
+                Our system will extract your details automatically.
+            </p>
+
+            <input
+                type="file"
+                id="resumeFile"
+                accept=".pdf,.docx"
+            >
+
+            <button id="uploadBtn" class="primary-btn">
+                Upload Resume
+            </button>
+
+            <button id="parseBtn" class="secondary-btn">
+                Parse Resume
+            </button>
+
+            <div id="resumeResult" class="result-box"></div>
+
+        </section>
+
+
+
+        <!-- JOB ANALYSIS -->
+
+        <section id="job-analysis" class="panel">
+
+            <h2>🎯 02. AI Job Analysis</h2>
+
+            <p>
+                Compare your resume with a job description
+                and calculate your job matching score.
+            </p>
+
+            <label>Job Title</label>
+
+            <input
+                type="text"
+                id="jobTitle"
+                placeholder="Example: Python Backend Developer"
+            >
+
+            <label>Job Description</label>
+
+            <textarea
+                id="jobDescription"
+                rows="6"
+                placeholder="Paste complete job description here..."
+            ></textarea>
+
+            <div class="button-group">
+
+                <button id="matchBtn" class="primary-btn">
+                    Analyze Job Match
+                </button>
+
+                <button id="atsBtn" class="secondary-btn">
+                    Check ATS Compatibility
+                </button>
+
+            </div>
+
+            <div id="matchResult" class="result-box"></div>
+
+            <div id="atsResult" class="result-box"></div>
+
+        </section>
+
+
+
+        <!-- CAREER RECOMMENDATION -->
+
+        <section id="career" class="panel">
+
+            <h2>💼 03. Career Recommendations</h2>
+
+            <p>
+                Discover suitable job roles based on
+                your technical skills.
+            </p>
+
+            <button id="careerBtn" class="primary-btn">
+                Recommend Career Roles
+            </button>
+
+            <div id="careerResult" class="result-box"></div>
+
+        </section>
+
+
+
+        <!-- WHAT IF SIMULATOR -->
+
+        <section id="simulator" class="panel">
+
+            <h2>🔮 04. What-If Career Simulator</h2>
+
+            <p>
+                Explore how learning additional skills
+                can change your role-specific skill match.
+            </p>
+
+            <label>Select Job Role</label>
+
+            <select id="simulatorRole">
+
+                <option>Frontend Developer</option>
+
+                <option>Python Backend Developer</option>
+
+                <option>Data Analyst</option>
+
+                <option>Data Scientist</option>
+
+                <option>Machine Learning Engineer</option>
+
+                <option>Computer Vision Engineer</option>
+
+                <option>Full Stack Developer</option>
+
+                <option>C++ Developer</option>
+
+                <option>Java Backend Developer</option>
+
+                <option>DevOps Engineer</option>
+
+                <option>QA Automation Engineer</option>
+
+                <option>SQL Developer</option>
+
+            </select>
+
+            <label>Additional Skills</label>
+
+            <input
+                type="text"
+                id="additionalSkills"
+                placeholder="JavaScript, React, Git"
+            >
+
+            <button id="simulateBtn" class="primary-btn">
+                Simulate My Career
+            </button>
+
+            <div id="simulatorResult" class="result-box"></div>
+
+        </section>
+
+
+
+        <!-- INTERVIEW PREPARATION -->
+
+        <section id="interview" class="panel">
+
+            <h2>🎤 05. AI Interview Preparation</h2>
+
+            <p>
+                Prepare for technical, project-based
+                and behavioral interview questions.
+            </p>
+
+            <label>Select Job Role</label>
+
+            <select id="interviewRole">
+
+                <option>Frontend Developer</option>
+
+                <option>Python Backend Developer</option>
+
+                <option>Data Analyst</option>
+
+                <option>Data Scientist</option>
+
+                <option>Machine Learning Engineer</option>
+
+                <option>Computer Vision Engineer</option>
+
+                <option>Full Stack Developer</option>
+
+                <option>C++ Developer</option>
+
+                <option>Java Backend Developer</option>
+
+                <option>DevOps Engineer</option>
+
+                <option>QA Automation Engineer</option>
+
+                <option>SQL Developer</option>
+
+            </select>
+
+            <button id="interviewBtn" class="primary-btn">
+                Prepare Interview Questions
+            </button>
+
+            <div id="interviewResult" class="result-box"></div>
+
+        </section>
+
+
+
+        <!-- LEARNING ROADMAP -->
+
+        <section id="roadmap" class="panel">
+
+            <h2>📚 06. Personalized Learning Roadmap</h2>
+
+            <p>
+                Generate a personalized learning plan
+                according to your missing skills.
+            </p>
+
+            <label>Select Career Role</label>
+
+            <select id="roadmapRole">
+
+                <option>Frontend Developer</option>
+
+                <option>Python Backend Developer</option>
+
+                <option>Data Analyst</option>
+
+                <option>Data Scientist</option>
+
+                <option>Machine Learning Engineer</option>
+
+                <option>Computer Vision Engineer</option>
+
+                <option>Full Stack Developer</option>
+
+                <option>C++ Developer</option>
+
+                <option>Java Backend Developer</option>
+
+                <option>DevOps Engineer</option>
+
+                <option>QA Automation Engineer</option>
+
+                <option>SQL Developer</option>
+
+            </select>
+
+            <button id="roadmapBtn" class="primary-btn">
+                Generate Learning Roadmap
+            </button>
+
+            <div id="roadmapResult" class="result-box"></div>
+
+        </section>
+
+
+
+        <!-- PDF REPORT -->
+
+        <section id="report" class="panel">
+
+            <h2>📥 07. Download Career Report</h2>
+
+            <p>
+                Generate a complete PDF containing your
+                resume analysis, matching score, ATS report,
+                career recommendations and learning roadmap.
+            </p>
+
+            <button id="reportBtn" class="primary-btn">
+                Generate PDF Report
+            </button>
+
+            <div id="reportResult" class="result-box"></div>
+
+        </section>
+
+
+
+        <!-- FOOTER -->
+
+        <footer>
+            <p>
+                © 2026 AI Career Intelligence.
+                Built with Python, FastAPI and Machine Learning.
+            </p>
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>

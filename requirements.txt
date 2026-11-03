@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+PyJWT
+pwdlib[argon2]
+python-multipart
+pymupdf
+python-docx
+scikit-learn
+reportlab
+jinja2
+python-dotenv
